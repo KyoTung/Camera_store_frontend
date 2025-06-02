@@ -1,17 +1,27 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
-import { Sidebar } from "@/layouts/sidebar";
-import { Header } from "@/layouts/header";
+import { Sidebar } from "@/layouts/admin/sidebar";
+import { Header } from "@/layouts/admin/header";
 
 import { cn } from "@/utils/cn";
 import { useEffect, useRef, useState } from "react";
+import { useStateContext } from "../../contexts/contextProvider";
 
 const Layout = () => {
     const isDesktopDevice = useMediaQuery("(min-width: 768px)");
     const [collapsed, setCollapsed] = useState(!isDesktopDevice);
+
+    const {user, token} = useStateContext();
+
+    if(!token){
+        return <Navigate to="/login" />
+    }
+    // if(token && user?.role === 1){
+    //     return <Navigate to="/admin" />
+    // }
 
     const sidebarRef = useRef(null);
 

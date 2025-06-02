@@ -1,76 +1,83 @@
-import { ChartColumn, Home, NotepadText, Package, PackagePlus, Settings, ShoppingBag, UserCheck, UserPlus, Users } from "lucide-react";
-
+import { ChartColumn, Home, NotepadText, Package, PackagePlus, Settings, ShoppingBag, UserCheck, UserPlus, Users, LogOut } from "lucide-react";
 import ProfileImage from "@/assets/profile-image.jpg";
 import ProductImage from "@/assets/product-image.jpg";
+import { BiCategoryAlt } from "react-icons/bi";
+import { MdOutlineEventNote } from "react-icons/md";
+
+const _path = "/admin";
 
 export const navbarLinks = [
     {
-        title: "Dashboard",
+        //title: "Dashboard",
         links: [
             {
                 label: "Dashboard",
                 icon: Home,
-                path: "/",
-            },
-            {
-                label: "Analytics",
-                icon: ChartColumn,
-                path: "/analytics",
-            },
-            {
-                label: "Reports",
-                icon: NotepadText,
-                path: "/reports",
+                path: _path,
             },
         ],
     },
     {
-        title: "Customers",
+        //title: "User",
         links: [
             {
-                label: "Customers",
+                label: "Users",
                 icon: Users,
-                path: "/customers",
-            },
-            {
-                label: "New customer",
-                icon: UserPlus,
-                path: "/new-customer",
-            },
-            {
-                label: "Verified customers",
-                icon: UserCheck,
-                path: "/verified-customers",
+                path: `${_path}/users`,
             },
         ],
     },
     {
-        title: "Products",
+        links: [
+            {
+                label: "Categories",
+                icon: BiCategoryAlt,
+                path: `${_path}/categories`,
+            },
+        ],
+    },
+    {
+        links: [
+            {
+                label: "Brands",
+                icon: BiCategoryAlt,
+                path: `${_path}/brands`,
+            },
+        ],
+    },
+    {
         links: [
             {
                 label: "Products",
                 icon: Package,
-                path: "/products",
-            },
-            {
-                label: "New product",
-                icon: PackagePlus,
-                path: "/new-product",
-            },
-            {
-                label: "Inventory",
-                icon: ShoppingBag,
-                path: "/inventory",
+                path: `${_path}/products`,
             },
         ],
     },
     {
-        title: "Settings",
         links: [
             {
-                label: "Settings",
-                icon: Settings,
-                path: "/settings",
+                label: "Orders",
+                icon: MdOutlineEventNote,
+                path: `${_path}/orders`,
+            },
+        ],
+    },
+    {
+        links: [
+            {
+                label: "Discount code",
+                icon: MdOutlineEventNote,
+                path: `${_path}/discount-code`,
+            },
+        ],
+    },
+    {
+        links: [
+            {
+                label: "Back to client page",
+                icon: LogOut,
+                path: "/",
             },
         ],
     },
@@ -186,8 +193,9 @@ export const topProducts = [
         image: ProductImage,
         description: "High-quality noise-canceling wireless headphones.",
         price: 99.99,
-        status: "In Stock",
-        rating: 4.5,
+        status: "1",
+        quanity: 100,
+        sku: "SKMNFN",
     },
     {
         number: 2,
@@ -195,8 +203,9 @@ export const topProducts = [
         image: ProductImage,
         description: "Latest 5G smartphone with excellent camera features.",
         price: 799.99,
-        status: "In Stock",
-        rating: 4.7,
+        status: "1",
+        quanity: 100,
+        sku: "SUDFNC",
     },
     {
         number: 3,
@@ -204,8 +213,9 @@ export const topProducts = [
         image: ProductImage,
         description: "Powerful gaming laptop with high-end graphics.",
         price: 1299.99,
-        status: "In Stock",
-        rating: 4.8,
+        status: "1",
+        quanity: 100,
+        sku: "MCMFIR",
     },
     {
         number: 4,
@@ -213,8 +223,9 @@ export const topProducts = [
         image: ProductImage,
         description: "Stylish smartwatch with fitness tracking features.",
         price: 199.99,
-        status: "Out of Stock",
-        rating: 4.4,
+        status: "0",
+        quanity: 100,
+        sku: "VRUEUS",
     },
     {
         number: 5,
@@ -222,52 +233,8 @@ export const topProducts = [
         image: ProductImage,
         description: "Portable Bluetooth speaker with deep bass sound.",
         price: 59.99,
-        status: "In Stock",
-        rating: 4.3,
-    },
-    {
-        number: 6,
-        name: "4K Monitor",
-        image: ProductImage,
-        description: "Ultra HD 4K monitor with stunning color accuracy.",
-        price: 399.99,
-        status: "In Stock",
-        rating: 4.6,
-    },
-    {
-        number: 7,
-        name: "Mechanical Keyboard",
-        image: ProductImage,
-        description: "Mechanical keyboard with customizable RGB lighting.",
-        price: 89.99,
-        status: "In Stock",
-        rating: 4.7,
-    },
-    {
-        number: 8,
-        name: "Wireless Mouse",
-        image: ProductImage,
-        description: "Ergonomic wireless mouse with precision tracking.",
-        price: 49.99,
-        status: "In Stock",
-        rating: 4.5,
-    },
-    {
-        number: 9,
-        name: "Action Camera",
-        image: ProductImage,
-        description: "Waterproof action camera with 4K video recording.",
-        price: 249.99,
-        status: "In Stock",
-        rating: 4.8,
-    },
-    {
-        number: 10,
-        name: "External Hard Drive",
-        image: ProductImage,
-        description: "Portable 2TB external hard drive for data storage.",
-        price: 79.99,
-        status: "Out of Stock",
-        rating: 4.5,
+        status: "1",
+        quanity: 100,
+        sku: "DNUTUUI",
     },
 ];

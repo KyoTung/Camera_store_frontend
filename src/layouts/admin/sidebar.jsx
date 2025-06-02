@@ -24,14 +24,21 @@ export const Sidebar = forwardRef(({ collapsed }, ref) => {
                 <img
                     src={logoLight}
                     alt="Logoipsum"
-                    className="dark:hidden"
+                    className="w-5 dark:hidden"
                 />
                 <img
                     src={logoDark}
                     alt="Logoipsum"
                     className="hidden dark:block"
                 />
-                {!collapsed && <p className="text-lg font-medium text-slate-900 transition-colors dark:text-slate-50">Logoipsum</p>}
+                {!collapsed && (
+                    <a
+                        href="/admin"
+                        className="text-lg font-medium text-slate-900 transition-colors dark:text-slate-50"
+                    >
+                        Phone Store
+                    </a>
+                )}
             </div>
             <div className="flex w-full flex-col gap-y-4 overflow-y-auto overflow-x-hidden p-3 [scrollbar-width:_thin]">
                 {navbarLinks.map((navbarLink) => (
