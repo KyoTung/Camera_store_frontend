@@ -29,15 +29,14 @@ const LoginForm = () => {
             setUser(data.user);
             setToken(data.access_token);
 
+            // if (data.user.role == 1 || data.user.role == 2) {
+            //     navigate("/admin", { replace: true });
+            // } else {
+            //     setError("Access Denied");
+            // }
             navigate("/");
         } catch (err) {
-            if (err.response && err.response.status === 422) {
-                setError(err.response.data);
-            } else if (err.response && err.response.data.error) {
-                setError({ general: err.response.data.error });
-            } else {
-                setError({ general: "Login failed. Please try again." });
-            }
+            setError(err.response?.data?.error || "Login failed. Please try again.");
         }
     };
 
@@ -48,13 +47,7 @@ const LoginForm = () => {
                 className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg"
             >
                 <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">Login</h2>
-                {error && typeof error === "object" && (
-                    <ul className="mb-4 text-center text-red-500">
-                        {Object.entries(error).map(([field, message], idx) =>
-                            Array.isArray(message) ? message.map((msg, i) => <li key={field + i}>{msg}</li>) : <li key={field + idx}>{message}</li>,
-                        )}
-                    </ul>
-                )}
+                {error && <p className="mb-4 text-center text-xl text-red-500">{error}</p>}
                 <div className="mb-4">
                     <label className="mb-2 block text-gray-700">Email</label>
                     <input

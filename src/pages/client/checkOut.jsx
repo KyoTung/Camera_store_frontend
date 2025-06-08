@@ -96,7 +96,7 @@ const Checkout = ({ total }) => {
     return (
         <div className="container mx-auto min-h-screen px-4 py-8">
             <ToastContainer />
-            <h1 className="mb-8 text-3xl font-bold">Checkout</h1>
+            <h1 className="mb-8 text-3xl font-bold text-center">Checkout</h1>
             <form
                 onSubmit={handleSubmit}
                 className="space-y-6"

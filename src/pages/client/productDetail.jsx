@@ -4,7 +4,7 @@ import axiosClient from "../../axios-client";
 import ProductDescription from "./../../compoments/productDescription";
 import { CartContext } from "../../contexts/cart";
 import { ToastContainer, toast } from "react-toastify";
-import { FiShoppingCart } from "react-icons/fi";
+import { LiaCartPlusSolid } from "react-icons/lia";
 
 const ProductDetail = () => {
     const [product, setProduct] = useState(null);
@@ -135,7 +135,7 @@ const ProductDetail = () => {
                             onClick={handleAddToCart}
                             className="flex w-full items-center justify-center rounded-lg bg-red-700 py-3 text-white transition-colors hover:bg-red-800"
                         >
-                            <FiShoppingCart className="mr-4 text-white" />
+                            <LiaCartPlusSolid className="mr-4 text-white" />
                             Add to Cart
                         </button>
                     </div>

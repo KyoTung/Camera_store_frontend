@@ -26,8 +26,8 @@ const RegisterForm = () => {
             email: emailRef.current.value,
             password: passwordRef.current.value,
             password_confirmation: confirmPasswordRef.current.value,
-            address:" ",
-            phone:" "
+            address: " ",
+            phone: " ",
         };
         console.log(payLoad);
 
@@ -55,20 +55,19 @@ const RegisterForm = () => {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-r">
             <form
                 onSubmit={handleSubmit}
                 className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg"
             >
                 <h2 className="mb-10 text-center text-3xl font-bold text-gray-800">Register</h2>
                 {error && typeof error === "object" && (
-    <ul className="mb-4 text-center text-red-500">
-        {Object.entries(error).map(([field, message], idx) =>
-            Array.isArray(message) ? message.map((msg, i) => <li key={field + i}>{msg}</li>)
-                                   : <li key={field + idx}>{message}</li>
-        )}
-    </ul>
-)}
+                    <ul className="mb-4 text-center text-red-500">
+                        {Object.entries(error).map(([field, message], idx) =>
+                            Array.isArray(message) ? message.map((msg, i) => <li key={field + i}>{msg}</li>) : <li key={field + idx}>{message}</li>,
+                        )}
+                    </ul>
+                )}
                 <div className="mb-4">
                     <label className="mb-2 block text-gray-700">Name</label>
                     <input

@@ -137,7 +137,7 @@ const DashboardPage = () => {
                                                 <div className="flex flex-col">
                                                     <p>{product.product?.name || product.name}</p>
                                                     <p className="font-normal text-slate-600 dark:text-slate-400">
-                                                        {product.product?.short_description || product.description}
+                                                        {product.product?.short_description}
                                                     </p>
                                                 </div>
                                             </div>
