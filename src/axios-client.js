@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
     // baseURL: import.meta.env.VITE_API_BASE_URL,
-    baseURL: "https://camerastorebackendapi-production-db7b.up.railway.app/api",
+    baseURL: "https://camera-store-back-end-api.onrender.com/api",
     withCredentials: true,
 });
 
