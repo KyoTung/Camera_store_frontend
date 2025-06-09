@@ -56,7 +56,7 @@ const Brands = () => {
                             to={`/product-brand/${brand.id}`}
                             className="group rounded-lg border bg-white p-2 shadow-sm transition-shadow duration-200 hover:shadow-md"
                         >
-                            <img src={`../../../src/assets/${brand.name}.png`} />
+                            <img src={`../../../public/asssets${brand.name}.png`} />
                         </Link>
                     ))}
                 </div>

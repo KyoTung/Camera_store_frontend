@@ -96,7 +96,7 @@ const Cart = () => {
                     <p className="mb-4 text-gray-600">Your cart is empty</p>
                     <img
                         className="mx-auto"
-                        src="../../../src/assets/cart_null.png"
+                        src="../../../public/asssets/cart_null.png"
                     />
                     <Link
                         to="/"
