@@ -78,13 +78,14 @@ const Cart = () => {
     };
 
     const handleCheckout = () => {
-        if (!user) {
-            setTimeout(() => {
-                toast.info("Please login to pay");
-                navigate("/login");
-            }, 1200);
+        if (user) {
+            navigate(`/checkout/${shipping}/${discount}`);
+        } else {
+            const shouldLogin = window.confirm("Please login to countinue");
+            if (shouldLogin) {
+                navigate("/login", { replace: true });
+            }
         }
-        navigate(`/checkout/${shipping}/${discount}`);
     };
     return (
         <div className="container mx-auto min-h-screen px-4 py-8">
@@ -96,7 +97,7 @@ const Cart = () => {
                     <p className="mb-4 text-gray-600">Your cart is empty</p>
                     <img
                         className="mx-auto"
-                        src="../../../public/asssets/cart_null.png"
+                        src="../../asssets/cart_null.jpg"
                     />
                     <Link
                         to="/"

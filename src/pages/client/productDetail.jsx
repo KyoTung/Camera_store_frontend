@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axiosClient from "../../axios-client";
 import ProductDescription from "./../../compoments/productDescription";
 import { CartContext } from "../../contexts/cart";
 import { ToastContainer, toast } from "react-toastify";
 import { LiaCartPlusSolid } from "react-icons/lia";
+import { useStateContext } from "../../contexts/contextProvider";
 
 const ProductDetail = () => {
     const [product, setProduct] = useState(null);
@@ -14,6 +15,8 @@ const ProductDetail = () => {
     const { id } = useParams();
 
     const { addToCart } = useContext(CartContext);
+    const { user } = useStateContext();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getProduct();
@@ -50,7 +53,6 @@ const ProductDetail = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <ToastContainer />
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 {/* Product Images */}
                 <div className="w-10/12 space-y-4">
@@ -104,28 +106,32 @@ const ProductDetail = () => {
 
                     {/* Specifications */}
                     <div className="mb-10 space-y-3 rounded-md bg-white shadow-md">
-                        <h2 className="text-xl font-semibold">Specifications</h2>
-                        <div className="grid grid-cols-2 gap-2 border">
-                            {[
-                                { label: "Resolution", value: product.resolution },
-                                { label: "Infrared", value: product.infrared },
-                                { label: "Audio", value: product.sound },
-                                { label: "Smart Function", value: product.smart_function },
-                                { label: "AI Feature", value: product.AI_function },
-                                { label: "Network", value: product.network },
-                                { label: "Other Features", value: product.other_features },
-                            ].map(
-                                (spec, index) =>
-                                    spec.value && (
-                                        <div
-                                            key={index}
-                                            className="flex justify-start pb-1"
-                                        >
-                                            <span className="text-gray-600">{spec.label}:</span>
-                                            <span className="ml-2 font-medium">{spec.value}</span>
-                                        </div>
-                                    ),
-                            )}
+                        <h2 className="px-4 pt-4 text-xl font-semibold">Specifications</h2>
+                        <div className="px-4 pb-4">
+                            <table className="min-w-full table-auto rounded border">
+                                <tbody>
+                                    {[
+                                        { label: "Resolution", value: product.resolution },
+                                        { label: "Infrared", value: product.infrared },
+                                        { label: "Audio", value: product.sound },
+                                        { label: "Smart Function", value: product.smart_function },
+                                        { label: "AI Feature", value: product.AI_function },
+                                        { label: "Network", value: product.network },
+                                        { label: "Other Features", value: product.other_features },
+                                    ].map(
+                                        (spec, index) =>
+                                            spec.value && (
+                                                <tr
+                                                    key={index}
+                                                    className="border-b last:border-b-0"
+                                                >
+                                                    <td className="w-1/3 bg-gray-50 px-3 py-2 text-gray-600">{spec.label}</td>
+                                                    <td className="px-3 py-2 font-medium">{spec.value}</td>
+                                                </tr>
+                                            ),
+                                    )}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 

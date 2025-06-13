@@ -154,7 +154,7 @@ const Footer = () => {
 
                         {/* Contact Info */}
                         <div className="mt-6 space-y-2 text-sm">
-                            <p className="text-gray-600">Email: support@techstore.com</p>
+                            <p className="text-gray-600">Email: support@neststore.com</p>
                             <p className="text-gray-600">Hotline: 1900 1234</p>
                             <p className="text-gray-600">Working hours: 8:00 - 22:00</p>
                         </div>

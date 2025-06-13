@@ -21,6 +21,17 @@ html{
     font-family: 'Roboto', sans-serif; 
     box-sizing: border-box;
 }
+@media (max-width: 360px) {
+    
+    /* font-size/logo nhỏ lại cho vừa màn hình */
+    .text-2xl {
+        font-size: 1.25rem !important;
+    }
+    html{
+    font-size: 90%; 
+    }
+}
+
 /*---------Reponsive------------*/
 .grid{
     width:1300px;

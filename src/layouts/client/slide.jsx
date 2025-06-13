@@ -4,13 +4,14 @@ import "react-slideshow-image/dist/styles.css";
 
 const slideImages = [
     {
-        url: "https://static.vecteezy.com/system/resources/previews/008/291/063/non_2x/photo-equipment-banner-horizontal-cartoon-style-vector.jpg",
+        url: "https://luaviettech.vn/upload/images/lap-dat-camera-an-ninh-tan-noi-tphcm.jpg"
     },
     {
-        url: "https://luaviettech.vn/upload/images/lap-dat-camera-an-ninh-tan-noi-tphcm.jpg",
+        url: "https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:80/plain/https://dashboard.cellphones.com.vn/storage/Artboard%201%20copy.jpg",
     },
+
     {
-        url: "https://img.freepik.com/free-vector/modern-sale-banner-with-abstract-shapes_1361-1641.jpg",
+        url: "https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:80/plain/https://dashboard.cellphones.com.vn/storage/Tp-linik-new.jpg",
     },
 ];
 
@@ -19,10 +20,14 @@ const SlideShow = () => {
         <div className="slide-container overflow-hidden rounded-xl border">
             <Slide>
                 {slideImages.map((slideImage, index) => (
-                    <div key={index}>
-                        <div
-                            className="flex h-[200px] w-full items-center justify-center bg-cover bg-center md:h-[300px] lg:h-[400px]"
-                            style={{ backgroundImage: `url(${slideImage.url})` }}
+                    <div
+                        key={index}
+                        className="flex items-center justify-center"
+                    >
+                        <img
+                            src={slideImage.url}
+                            alt={`Slide ${index}`}
+                            className="h-[200px] w-full rounded-xl object-cover md:h-[300px] lg:h-[400px]"
                         />
                     </div>
                 ))}

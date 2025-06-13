@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Header = () => {
     const navigate = useNavigate();
-    const { cartData } = useContext(CartContext);
+    const { totalQuantity } = useContext(CartContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [showSidebarModal, setShowSidebarModal] = useState(false);
     const menuRef = useRef(null);
@@ -163,7 +163,7 @@ const Header = () => {
             <ToastContainer />
             {/* Top Navigation */}
             <div className="py-2 text-white shadow-sm">
-                <nav className="container relative mx-auto flex flex-wrap items-center justify-between px-4 md:flex-row md:px-2">
+                <nav className="container relative mx-auto flex flex-wrap items-center justify-between px-4 md:flex-row md:px-1">
                     <ul className="flex gap-4">
                         <li>
                             <Link
@@ -299,9 +299,9 @@ const Header = () => {
                             className="relative"
                         >
                             <FiShoppingCart className="h-6 w-6 text-white" />
-                            {cartData.length > 0 ? (
+                            {totalQuantity > 0 ? (
                                 <span className="absolute -right-2 -top-2 rounded-full bg-white px-2 py-1 text-xs text-red-600">
-                                    {cartData.length}
+                                    {totalQuantity}
                                 </span>
                             ) : (
                                 <span className="absolute -right-2 -top-2 rounded-full bg-white px-2 py-1 text-xs text-red-600">0</span>

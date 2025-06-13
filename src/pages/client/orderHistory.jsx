@@ -141,7 +141,7 @@ const OrderHistory = () => {
                                 </div>
                                 <div className="flex items-center gap-4">
                                     {renderStatus(order.status)}
-                                    <p className="font-semibold">Total: {formatCurrency(order.grand_total)}</p>
+                                    <p className="font-semibold">Total: {order.grand_total.toLocaleString()}₫</p>
                                 </div>
                             </div>
 

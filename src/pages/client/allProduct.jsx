@@ -9,6 +9,7 @@ import Loading from "../../compoments/Loading";
 import { FaStar } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import "../../index.css";
+import { CartContext } from "../../contexts/cart";
 
 const AllProduct = () => {
     const [products, setProducts] = useState([]);
@@ -16,6 +17,8 @@ const AllProduct = () => {
     const [visibleProducts, setVisibleProducts] = useState(10); // Default to show 10 products (4 rows)
     const [originalProducts, setOriginalProducts] = useState([]); // Store original product list
     const [sortBy, setSortBy] = useState("newest");
+
+    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
         getProducts();
@@ -63,6 +66,11 @@ const AllProduct = () => {
         setProducts(sortedProducts);
     };
 
+    const handleAddToCart = () => {
+        addToCart(product);
+        toast.success("Product added to cart successfully");
+    };
+
     if (loading) {
         return (
             <div className="flex h-screen items-center justify-center">
@@ -90,50 +98,38 @@ const AllProduct = () => {
 
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {products.slice(0, visibleProducts).map((product) => (
-                        <div
+                        <Link
+                            to={`/product-detail/${product.id}`}
                             className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white p-2 shadow-sm transition-all hover:shadow-lg"
                             key={product.id}
                         >
                             <div className="flex flex-col">
-                                <Link to={`/product-detail/${product.id}`}>
-                                    <div className="flex items-center justify-center text-center">
-                                        <img
-                                            src={product.image_url}
-                                            alt={product.name}
-                                            className="product-image"
-                                            style={{
-                                                aspectRatio: "1 / 1.2",
-                                                overflowClipMargin: "content-box",
-                                            }}
-                                        />
-                                    </div>
+                                <img
+                                    src={product.image_url}
+                                    alt={product.name}
+                                    className="product-image"
+                                    style={{
+                                        aspectRatio: "1 / 1.2",
+                                        overflowClipMargin: "content-box",
+                                    }}
+                                />
+                                <div className="">
+                                    <h2 className="mb-6 line-clamp-2 text-lg font-bold text-zinc-700">{product.name}</h2>
 
-                                    <div className="p-3">
-                                        <h4 className="mb-2 line-clamp-2 text-sm font-medium text-gray-800">{product.name}</h4>
-
-                                        <div className="mb-2 flex flex-wrap gap-1">{/* Optional: product specs */}</div>
-
-                                        <div className="flex items-end justify-between">
-                                            <p className="text-lg font-bold text-red-600">{product.price.toLocaleString()}₫</p>
-                                        </div>
-
-                                        <div className="mt-2 flex items-center justify-between">
-                                            <div className="flex">
-                                                {[...Array(5)].map((_, i) => (
-                                                    <FaStar
-                                                        key={i}
-                                                        className="h-4 w-4 text-yellow-500"
-                                                    />
-                                                ))}
-                                            </div>
-                                            <div>
-                                                <span className="text-xs text-gray-500">In stock: {product.quantity}</span>
-                                            </div>
+                                    <div className="mt-4 flex items-center justify-between">
+                                        <p className="text-xl font-semibold text-red-600">{product.price.toLocaleString()}₫</p>
+                                        <div className="flex">
+                                            {[...Array(5)].map((_, i) => (
+                                                <FaStar
+                                                    key={i}
+                                                    className="h-4 w-4 text-yellow-500"
+                                                />
+                                            ))}
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 

@@ -24,7 +24,6 @@ const Home = () => {
                 </div>
                 <div
                     className="lg:w-5/5 w-full lg:-ml-6"
-                    
                 >
                     <SlideShow />
                 </div>

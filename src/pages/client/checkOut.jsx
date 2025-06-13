@@ -81,7 +81,7 @@ const Checkout = ({ total }) => {
             });
 
             if (response.status === 200) {
-                toast.success(response.data.message || "Payment successful");
+                toast.success("Payment successful");
                 localStorage.removeItem("cart");
                 clearCart();
                 setTimeout(() => {
