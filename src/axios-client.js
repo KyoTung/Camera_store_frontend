@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
     // baseURL: import.meta.env.VITE_API_BASE_URL,
-    baseURL: "https://mellow-light-production-59e2.up.railway.app/api",
+    baseURL: "https://camera-store-back-end-api-1.onrender.com/api",
     withCredentials: true,
 });
 
