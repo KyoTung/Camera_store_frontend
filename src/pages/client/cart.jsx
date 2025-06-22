@@ -88,108 +88,123 @@ const Cart = () => {
         }
     };
     return (
-        <div className="container mx-auto min-h-screen px-4 py-8">
+        <div className="container mx-auto min-h-screen px-2 py-4 sm:px-4 sm:py-8">
             <ToastContainer />
-            <h1 className="mb-8 text-center text-3xl font-bold">Shopping Cart</h1>
+            <h1 className="mb-4 text-center text-2xl font-bold sm:mb-8 sm:text-3xl">Shopping Cart</h1>
 
             {cartData.length === 0 ? (
                 <div className="text-center">
-                    <p className="mb-4 text-gray-600">Your cart is empty</p>
+                    <p className="mb-2 text-sm text-gray-600 sm:mb-4 sm:text-base">Your cart is empty</p>
                     <img
-                        className="mx-auto"
+                        className="mx-auto w-[140px] sm:w-[200px]"
                         src="../../asssets/cart_null.jpg"
+                        alt="Empty cart"
                     />
                     <Link
                         to="/"
-                        className="text-blue-500 hover:underline"
+                        className="mt-2 block text-blue-500 hover:underline sm:mt-4"
                     >
                         Back to shopping
                     </Link>
                 </div>
             ) : (
-                <div className="grid gap-8 lg:grid-cols-3">
+                <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-8">
                     {/* Product list */}
-                    <div className="space-y-4 lg:col-span-2">
+                    {/* Product list */}
+                    <div className="space-y-3 sm:space-y-4 lg:col-span-2">
                         {cartData.map((item) => (
                             <div
                                 key={item.id}
-                                className="flex items-center gap-4 rounded-lg border p-4"
+                                className="xs:flex-row flex flex-row flex-col items-start gap-3 rounded-lg border p-2 sm:p-4 lg:flex-row"
                             >
+                                {/* Ảnh bên trái (giữ nguyên ở mọi kích thước) */}
                                 <img
                                     src={item.image_url}
                                     alt={item.name}
-                                    className="h-20 w-20 rounded-lg object-cover"
+                                    className="h-14 w-14 rounded-lg object-cover sm:h-20 sm:w-20"
                                 />
 
-                                <div className="flex-1">
-                                    <h3 className="text-lg font-semibold">{item.name}</h3>
-                                    <p className="text-gray-600">{item.price.toLocaleString()}₫</p>
-                                </div>
+                                {/* Thông tin sản phẩm và điều khiển số lượng */}
+                                <div className="flex w-full flex-1 flex-col">
+                                    {/* Tên + xóa: nằm ngang ở mọi kích thước */}
+                                    <div className="flex flex-row items-start justify-between">
+                                        <div>
+                                            <h3 className="text-base font-semibold sm:text-lg">{item.name}</h3>
+                                            {/* Ở mobile, giá sẽ dời xuống dưới, nên ẩn dòng này dưới md */}
+                                            <p className="hidden text-xs text-gray-600 sm:text-base lg:block">{item.price.toLocaleString()}₫</p>
+                                        </div>
+                                        <button
+                                            onClick={() => handleRemove(item.id)}
+                                            className="ml-2 text-xs text-red-600 hover:text-red-700 sm:text-sm"
+                                        >
+                                            <RiDeleteBinLine size={18} />
+                                        </button>
+                                    </div>
 
-                                {/* Quantity controls */}
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        onClick={() => handleDecrease(item.id)}
-                                        className="rounded border px-3 py-1 hover:bg-gray-100"
-                                        disabled={item.qty <= 1}
-                                    >
-                                        -
-                                    </button>
-                                    <input
-                                        type="number"
-                                        value={item.qty}
-                                        onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                                        className="w-16 rounded border py-1 text-center"
-                                        min="1"
-                                    />
-                                    <button
-                                        onClick={() => handleIncrease(item.id)}
-                                        className="rounded border px-3 py-1 hover:bg-gray-100"
-                                    >
-                                        +
-                                    </button>
-                                </div>
-
-                                {/* Total and remove button */}
-                                <div className="min-w-[120px] text-right">
-                                    <p className="font-semibold">{(item.price * item.qty).toLocaleString()}₫</p>
-                                    <button
-                                        onClick={() => handleRemove(item.id)}
-                                        className="mt-1 text-sm text-red-600 hover:text-red-700"
-                                    >
-                                        <RiDeleteBinLine size="20" />
-                                    </button>
+                                    {/* Hàng số lượng và giá */}
+                                    <div className="xs:flex-row mt-2 flex flex-col items-center justify-between gap-2">
+                                        <div className="flex items-center gap-1 sm:gap-2">
+                                            <button
+                                                onClick={() => handleDecrease(item.id)}
+                                                className="rounded border px-2 py-1 hover:bg-gray-100 sm:px-3"
+                                                disabled={item.qty <= 1}
+                                            >
+                                                -
+                                            </button>
+                                            <input
+                                                type="number"
+                                                value={item.qty}
+                                                onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                                                className="w-10 rounded border py-1 text-center sm:w-16"
+                                                min="1"
+                                            />
+                                            <button
+                                                onClick={() => handleIncrease(item.id)}
+                                                className="rounded border px-2 py-1 hover:bg-gray-100 sm:px-3"
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                        {/* Ở mobile, giá nằm dưới, ở lớn thì nằm bên phải */}
+                                        <div className="min-w-[60px] text-right text-sm font-semibold sm:text-base lg:hidden">
+                                            {(item.price * item.qty).toLocaleString()}₫
+                                        </div>
+                                    </div>
+                                    {/* Hiển thị giá bên phải ở màn hình lớn (giữ nguyên layout cũ) */}
+                                    <div className="mt-2 hidden min-w-[120px] text-right lg:block">
+                                        <p className="font-semibold">{(item.price * item.qty).toLocaleString()}₫</p>
+                                    </div>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Checkout section */}
-                    <div className="sticky top-8 h-fit rounded-lg border-2 bg-gray-50 p-6">
-                        <div className="mb-6">
-                            <h2 className="mb-4 text-xl font-bold">Order Summary</h2>
+                    <div className="sticky top-8 mt-4 h-fit rounded-lg border-2 bg-gray-50 p-3 sm:p-6 lg:mt-0">
+                        <div className="mb-5 sm:mb-6">
+                            <h2 className="mb-2 text-lg font-bold sm:mb-4 sm:text-xl">Order Summary</h2>
 
-                            <div className="mb-4">
-                                <label className="mb-2 block text-sm font-medium">Discount code (if any)</label>
-                                <div className="flex gap-2">
+                            <div className="mb-3 sm:mb-4">
+                                <label className="mb-1 block text-xs font-medium sm:mb-2 sm:text-sm">Discount code (if any)</label>
+                                <div className="flex gap-1 sm:gap-2">
                                     <input
                                         type="text"
                                         value={discountCode}
                                         onChange={(e) => setDiscountCode(e.target.value)}
-                                        className="flex-1 rounded border px-3 py-2"
+                                        className="flex-1 rounded border px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-base"
                                         placeholder="Enter discount code"
                                     />
                                     <button
                                         onClick={applyDiscount}
-                                        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+                                        className="rounded bg-blue-500 px-2 py-1 text-xs text-white hover:bg-blue-600 sm:px-4 sm:py-2 sm:text-base"
                                     >
                                         Apply
                                     </button>
                                 </div>
-                                {errorMessage && <p className="mt-1 text-sm text-red-500">{errorMessage}</p>}
+                                {errorMessage && <p className="mt-1 text-xs text-red-500 sm:text-sm">{errorMessage}</p>}
                             </div>
 
-                            <div className="space-y-3">
+                            <div className="space-y-1 text-xs sm:space-y-3 sm:text-base">
                                 <div className="flex justify-between">
                                     <span>Subtotal:</span>
                                     <span>{subTotal.toLocaleString()}₫</span>
@@ -202,23 +217,23 @@ const Cart = () => {
                                     <span>Shipping fee:</span>
                                     <span>{shipping.toLocaleString()}₫</span>
                                 </div>
-                                <div className="flex justify-between border-t pt-3 font-bold">
+                                <div className="flex justify-between border-t pt-2 font-bold sm:pt-3">
                                     <span>Total:</span>
-                                    <span className="text-xl text-red-500">{grandTotal(discount).toLocaleString()}₫</span>
+                                    <span className="text-base text-red-500 sm:text-xl">{grandTotal(discount).toLocaleString()}₫</span>
                                 </div>
                             </div>
                         </div>
 
                         <button
                             onClick={handleCheckout}
-                            className="w-full rounded-lg bg-red-700 py-3 text-white transition-colors hover:bg-red-800"
+                            className="w-full rounded-lg bg-red-700 py-2 text-base text-white transition-colors hover:bg-red-800 sm:py-3"
                         >
                             Checkout
                         </button>
 
                         <Link
                             to="/"
-                            className="mt-4 block text-center text-blue-500 hover:underline"
+                            className="mt-3 block text-center text-xs text-blue-500 hover:underline sm:mt-4 sm:text-base"
                         >
                             Continue Shopping
                         </Link>

@@ -26,8 +26,8 @@ const RegisterForm = () => {
             email: emailRef.current.value,
             password: passwordRef.current.value,
             password_confirmation: confirmPasswordRef.current.value,
-            address: " ",
-            phone: " ",
+            address: "",
+            phone: "",
         };
         console.log(payLoad);
 
